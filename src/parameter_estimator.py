@@ -9,10 +9,6 @@ population_size = 50
 std_noise = 0.1
 alpha = 0.001
 
-npop = 50      # population size
-sigma = 0.1    # noise standard deviation
-alpha = 0.001  # learning rate
-
 w_est = np.random.randn(3)
 
 for i in range(200):
@@ -22,5 +18,5 @@ for i in range(200):
         w_try = w_est + std_noise*candidates[j]
         rewards[j] = get_reward(w_try)
     A = (rewards - np.mean(rewards)) / np.std(rewards)
-    w_est = w_est + alpha/(npop*sigma) * np.dot(candidates.T, A)
+    w_est = w_est + alpha/(population_size*std_noise) * np.dot(candidates.T, A)
     print(w_est)
